@@ -15,6 +15,14 @@ class CreatePessoasTable extends Migration
     {
         Schema::create('pessoas', function (Blueprint $table) {
             $table->id();
+            $table->string('nome')->comment("Nome da pessoa");
+            $table->string('sobrenome')->comment("Sobrenome da pessoa");
+            $table->string('email')->unique()->comment("Email da pessoa");
+            $table->string('telefone')->comment("Telefone da pessoa");
+            $table->enum('tipo_pessoa', ["F", "J"])->comment("Tipo de pessoa, F => Física, J => Jurídica");
+            $table->string('cpf', 14)->comment("CPF da pessoa");
+            $table->string('cnpj', 18)->comment("CNPJ da pessoa");
+
             $table->timestamps();
         });
     }
